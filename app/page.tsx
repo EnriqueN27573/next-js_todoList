@@ -49,11 +49,13 @@ export default async function App() {
             To Do List
           </div>
           <div>
-            <Suspense fallback={<div>Loading ...</div>}>
-              {todoList.map((todo: { id: number; todoName: string }) => (
-                <TodoItem key={todo.id} id={todo.id} todoItem={todo.todoName} />
-              ))}
-            </Suspense>
+            {todoList.map((todo: { id: number; todoName: string }) => (
+              <div key={todo.id}>
+                <Suspense fallback={<div>Loading ...</div>}>
+                  <TodoItem id={todo.id} todoItem={todo.todoName} />
+                </Suspense>
+              </div>
+            ))}
           </div>
         </div>
       </div>

@@ -31,8 +31,6 @@ function TodoItem(props: TodoItemProps) {
 
   const deleteTodo = async () => {
     "use server";
-    // console.log("start");
-    // console.log(`${DOMAIN}/api/todo/${props.id}`);
     const res = await fetch(`${DOMAIN}/api/todo/${props.id}`, {
       method: "DELETE",
       headers: {

@@ -46,7 +46,6 @@ function CustomModalProvider(props: { children: ReactNode }) {
   };
 
   const changeFormValue = (event: any) => {
-    console.log(event.target.value);
     formValue = event.target.value;
   };
 

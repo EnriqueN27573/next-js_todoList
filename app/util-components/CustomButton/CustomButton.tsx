@@ -22,6 +22,7 @@ function CustomButton(props: CustomButtonProps) {
         props.buttonColor === "red" ? "bg-red-500" : "bg-sky-400",
       ])}
       onClick={onButtonClick}
+      type="button"
     >
       {props.buttonText}
     </button>

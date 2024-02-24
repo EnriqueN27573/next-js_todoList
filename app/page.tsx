@@ -10,14 +10,6 @@ import { revalidatePath } from "next/cache";
 export default async function App() {
   const inputInfo: InputInfo[] = [{ param: "todo item", required: true }];
 
-  const getTodo = async () => {
-    const res = await fetch(DOMAIN + "/api/todo", { cache: "no-store" });
-    const result = await res.json();
-    return result.data;
-  };
-
-  const todoList = await getTodo();
-
   const postTodo = async (formData: Record<string, string>) => {
     "use server";
     const res = await fetch(DOMAIN + "/api/todo", {
@@ -49,16 +41,34 @@ export default async function App() {
             To Do List
           </div>
           <div>
-            {todoList.map((todo: { id: number; todoName: string }) => (
-              <div key={todo.id}>
-                <Suspense fallback={<div>Loading ...</div>}>
-                  <TodoItem id={todo.id} todoItem={todo.todoName} />
-                </Suspense>
-              </div>
-            ))}
+            <Suspense fallback={<div>Loading ...</div>}>
+              <TodoList />
+            </Suspense>
           </div>
         </div>
       </div>
     </CustomModalProvider>
+  );
+}
+
+async function TodoList() {
+  const getTodo = async () => {
+    const res = await fetch(DOMAIN + "/api/todo", { cache: "no-store" });
+    const result = await res.json();
+    return result.data;
+  };
+
+  const todoList = await getTodo();
+
+  return (
+    <>
+      {todoList.map((todo: { id: number; todoName: string }) => (
+        <div key={todo.id}>
+          <Suspense fallback={<div>Loading ...</div>}>
+            <TodoItem id={todo.id} todoItem={todo.todoName} />
+          </Suspense>
+        </div>
+      ))}
+    </>
   );
 }

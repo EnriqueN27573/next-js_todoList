@@ -10,7 +10,7 @@ type TodoItemProps = {
   todoItem: string;
 };
 
-function TodoItem(props: TodoItemProps) {
+async function TodoItem(props: TodoItemProps) {
   const updateTodo = async (newFormData: string) => {
     "use server";
     const res = await fetch(DOMAIN + "/api/todo", {

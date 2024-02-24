@@ -27,10 +27,7 @@ function ButtonToTodoModal(props: ButtonToTodoModalProps) {
   };
 
   return (
-    <CustomButton
-      buttonText={"Change Todo"}
-      buttonFunction={() => buttonFunction()}
-    />
+    <CustomButton buttonText={"Change Todo"} buttonFunction={buttonFunction} />
   );
 }
 
